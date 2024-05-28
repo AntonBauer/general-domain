@@ -1,4 +1,4 @@
-namespace GeneralDomain;
+namespace GeneralDomain.Entities;
 
 public abstract record Id<TValue>(TValue Value)
 {
