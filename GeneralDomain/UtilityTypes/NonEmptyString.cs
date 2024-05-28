@@ -6,10 +6,10 @@ public record NonEmptyString
 
     private NonEmptyString(string value) => Value = value;
 
-    public static NonEmptyString Create(string value) =>
+    public static Validation<string, NonEmptyString> Create(string value) =>
         string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)
-            ? throw new ArgumentOutOfRangeException(nameof(value), "Value cannot be empty or white spaces only")
-            : new(value);
+            ? Validation<string, NonEmptyString>.Fail(["Value cannot be empty"])
+            : Validation<string, NonEmptyString>.Success(new(value));
 
     public override string ToString() => Value;
 
