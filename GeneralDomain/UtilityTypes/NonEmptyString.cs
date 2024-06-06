@@ -1,3 +1,5 @@
+using CSharpFunctionalExtensions;
+
 namespace GeneralDomain.UtilityTypes;
 
 public record NonEmptyString
@@ -6,10 +8,10 @@ public record NonEmptyString
 
     private NonEmptyString(string value) => Value = value;
 
-    public static Validation<string, NonEmptyString> Create(string value) =>
-        string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)
-            ? Validation<string, NonEmptyString>.Fail(["Value cannot be empty"])
-            : Validation<string, NonEmptyString>.Success(new(value));
+    public static Result<NonEmptyString> Create(string value) =>
+        Result.SuccessIf<NonEmptyString>(() => string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value),
+                                         new(value),
+                                         "Value cannot be empty");
 
     public override string ToString() => Value;
 

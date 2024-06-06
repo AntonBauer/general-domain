@@ -4,6 +4,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="LanguageExt.Core" Version="4.4.8" />
+    <PackageVersion Include="CSharpFunctionalExtensions" Version="2.42.0" />
   </ItemGroup>
 </Project>
