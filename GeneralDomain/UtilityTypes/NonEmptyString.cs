@@ -9,7 +9,7 @@ public record NonEmptyString
   private NonEmptyString(string value) => Value = value;
 
   public static Result<NonEmptyString> Create(string value) =>
-      Result.SuccessIf<NonEmptyString>(() => string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value),
+      Result.SuccessIf<NonEmptyString>(() => !string.IsNullOrEmpty(value) && !string.IsNullOrWhiteSpace(value),
                                        new(value),
                                        "Value cannot be empty");
 
